@@ -1,0 +1,67 @@
+#! /usr/local/bin/vvp
+:ivl_version "0.9.5 " "(v0_9_5)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x9617fc8 .scope module, "cpu" "cpu" 2 3;
+ .timescale 0 0;
+L_0x9639150 .functor BUFZ 16, L_0x9639150, C4<0000000000000000>, C4<0000000000000000>, C4<0000000000000000>;
+v0x9638aa8_0 .net "bath_a", 15 0, v0x9638ce0_0; 1 drivers
+v0x9638b28_0 .net "bath_b", 15 0, v0x9638d50_0; 1 drivers
+v0x9638b98_0 .net "bath_c", 15 0, L_0x9639150; 1 drivers
+v0x9638c08_0 .net "clk", 0 0, C4<z>; 0 drivers
+v0x9638c70_0 .net "com", 7 0, C4<zzzzzzzz>; 0 drivers
+v0x9638ce0_0 .var "gr0", 15 0;
+v0x9638d50_0 .var "gr2", 15 0;
+v0x9638da0_0 .var "gr3", 15 0;
+v0x9638e18_0 .var "gr7", 15 0;
+v0x9638e68_0 .net "latch3", 0 0, C4<z>; 0 drivers
+v0x9638ef8_0 .net "latch7", 0 0, C4<z>; 0 drivers
+v0x9638f58_0 .var "pr", 15 0;
+v0x9638ff0_0 .net "rst_n", 0 0, C4<z>; 0 drivers
+E_0x96183e8/0 .event negedge, v0x9638ff0_0;
+E_0x96183e8/1 .event posedge, v0x9638c08_0;
+E_0x96183e8 .event/or E_0x96183e8/0, E_0x96183e8/1;
+S_0x96181a8 .scope module, "alu1" "alu" 2 27, 3 3, S_0x9617fc8;
+ .timescale 0 0;
+v0x9618248_0 .alias "a", 15 0, v0x9638aa8_0;
+v0x9638980_0 .alias "b", 15 0, v0x9638b28_0;
+v0x96389e0_0 .alias "o", 15 0, v0x9638b98_0;
+v0x9638a40_0 .alias "s", 7 0, v0x9638c70_0;
+    .scope S_0x9617fc8;
+T_0 ;
+    %wait E_0x96183e8;
+    %load/v 8, v0x9638ff0_0, 1;
+    %inv 8, 1;
+    %jmp/0xz  T_0.0, 8;
+    %ix/load 0, 16, 0;
+    %assign/v0 v0x9638f58_0, 0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/v 8, v0x9638f58_0, 16;
+    %mov 24, 0, 16;
+    %addi 8, 1, 32;
+    %ix/load 0, 16, 0;
+    %assign/v0 v0x9638f58_0, 0, 8;
+T_0.1 ;
+    %load/v 8, v0x9638e68_0, 1;
+    %jmp/0xz  T_0.2, 8;
+    %load/v 8, v0x9638b98_0, 16;
+    %ix/load 0, 16, 0;
+    %assign/v0 v0x9638da0_0, 0, 8;
+T_0.2 ;
+    %load/v 8, v0x9638ef8_0, 1;
+    %jmp/0xz  T_0.4, 8;
+    %load/v 8, v0x9638b98_0, 16;
+    %ix/load 0, 16, 0;
+    %assign/v0 v0x9638e18_0, 0, 8;
+T_0.4 ;
+    %jmp T_0;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "datapath.v";
+    "alu.v";
