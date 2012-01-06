@@ -1,7 +1,6 @@
 // Generic Definition
 
 `define DATA_W 16  // WORD Width
-`define DOP_W 32   // Double word OPeration Width
 `define FR_W 3     // Flag Register Width
 `define OPCODE_W 8 // OPeration CODE Width
 `define DEPTH 256

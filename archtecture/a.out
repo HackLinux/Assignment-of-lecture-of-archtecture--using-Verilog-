@@ -4,64 +4,65 @@
 :vpi_module "system";
 :vpi_module "v2005_math";
 :vpi_module "va_math";
-S_0x9617fc8 .scope module, "cpu" "cpu" 2 3;
+S_0x9bdb8f8 .scope module, "register" "register" 2 3;
  .timescale 0 0;
-L_0x9639150 .functor BUFZ 16, L_0x9639150, C4<0000000000000000>, C4<0000000000000000>, C4<0000000000000000>;
-v0x9638aa8_0 .net "bath_a", 15 0, v0x9638ce0_0; 1 drivers
-v0x9638b28_0 .net "bath_b", 15 0, v0x9638d50_0; 1 drivers
-v0x9638b98_0 .net "bath_c", 15 0, L_0x9639150; 1 drivers
-v0x9638c08_0 .net "clk", 0 0, C4<z>; 0 drivers
-v0x9638c70_0 .net "com", 7 0, C4<zzzzzzzz>; 0 drivers
-v0x9638ce0_0 .var "gr0", 15 0;
-v0x9638d50_0 .var "gr2", 15 0;
-v0x9638da0_0 .var "gr3", 15 0;
-v0x9638e18_0 .var "gr7", 15 0;
-v0x9638e68_0 .net "latch3", 0 0, C4<z>; 0 drivers
-v0x9638ef8_0 .net "latch7", 0 0, C4<z>; 0 drivers
-v0x9638f58_0 .var "pr", 15 0;
-v0x9638ff0_0 .net "rst_n", 0 0, C4<z>; 0 drivers
-E_0x96183e8/0 .event negedge, v0x9638ff0_0;
-E_0x96183e8/1 .event posedge, v0x9638c08_0;
-E_0x96183e8 .event/or E_0x96183e8/0, E_0x96183e8/1;
-S_0x96181a8 .scope module, "alu1" "alu" 2 27, 3 3, S_0x9617fc8;
+L_0x9bfc540 .functor BUFZ 16, v0x9bfc758_0, C4<0000000000000000>, C4<0000000000000000>, C4<0000000000000000>;
+L_0x9bfcfc8 .functor BUFZ 16, v0x9bfc758_0, C4<0000000000000000>, C4<0000000000000000>, C4<0000000000000000>;
+v0x9bfc4e0_0 .net "a", 15 0, L_0x9bfc540; 1 drivers
+v0x9bfc578_0 .net "b", 15 0, L_0x9bfcfc8; 1 drivers
+v0x9bfc5d8_0 .net "bath_a", 0 0, C4<z>; 0 drivers
+v0x9bfc628_0 .net "bath_b", 0 0, C4<z>; 0 drivers
+v0x9bfc698_0 .net "c", 15 0, C4<zzzzzzzzzzzzzzzz>; 0 drivers
+v0x9bfc6e8_0 .net "clk", 0 0, C4<z>; 0 drivers
+v0x9bfc758_0 .var "data", 15 0;
+v0x9bfc7a8_0 .net "latch", 0 0, C4<z>; 0 drivers
+E_0x9bdbaa8 .event posedge, v0x9bfc6e8_0;
+S_0x9bfc090 .scope module, "tri_a" "tri_state_buffer" 2 13, 3 3, S_0x9bdb8f8;
  .timescale 0 0;
-v0x9618248_0 .alias "a", 15 0, v0x9638aa8_0;
-v0x9638980_0 .alias "b", 15 0, v0x9638b28_0;
-v0x96389e0_0 .alias "o", 15 0, v0x9638b98_0;
-v0x9638a40_0 .alias "s", 7 0, v0x9638c70_0;
-    .scope S_0x9617fc8;
+v0x9bfc110_0 .net *"_s0", 2 0, L_0x9bfc808; 1 drivers
+v0x9bfc180_0 .net *"_s11", 14 0, C4<000000000000000>; 1 drivers
+v0x9bfc1e0_0 .net *"_s3", 1 0, C4<00>; 1 drivers
+v0x9bfc240_0 .net *"_s4", 2 0, C4<001>; 1 drivers
+v0x9bfc290_0 .net *"_s6", 0 0, L_0x9bfc928; 1 drivers
+v0x9bfc2f0_0 .net *"_s8", 15 0, L_0x9bfca08; 1 drivers
+v0x9bfc350_0 .alias "a", 0 0, v0x9bfc5d8_0;
+v0x9bfc3b0_0 .alias "in", 15 0, v0x9bfc4e0_0;
+v0x9bfc400_0 .net "o", 15 0, L_0x9bfcad8; 1 drivers
+v0x9bfc450_0 .net "z", 0 0, C4<z>; 0 drivers
+L_0x9bfc808 .concat [ 1 2 0 0], C4<z>, C4<00>;
+L_0x9bfc928 .cmp/eq 3, L_0x9bfc808, C4<001>;
+L_0x9bfca08 .concat [ 1 15 0 0], C4<z>, C4<000000000000000>;
+L_0x9bfcad8 .functor MUXZ 16, L_0x9bfca08, L_0x9bfc540, L_0x9bfc928, C4<>;
+S_0x9bdaab8 .scope module, "tri_b" "tri_state_buffer" 2 14, 3 3, S_0x9bdb8f8;
+ .timescale 0 0;
+v0x9bdb6b0_0 .net *"_s0", 2 0, L_0x9bfcbb0; 1 drivers
+v0x9bfbcb0_0 .net *"_s11", 14 0, C4<000000000000000>; 1 drivers
+v0x9bfbd10_0 .net *"_s3", 1 0, C4<00>; 1 drivers
+v0x9bfbd70_0 .net *"_s4", 2 0, C4<001>; 1 drivers
+v0x9bfbdd8_0 .net *"_s6", 0 0, L_0x9bfccd8; 1 drivers
+v0x9bfbe38_0 .net *"_s8", 15 0, L_0x9bfcd98; 1 drivers
+v0x9bfbeb8_0 .alias "a", 0 0, v0x9bfc628_0;
+v0x9bfbf18_0 .alias "in", 15 0, v0x9bfc4e0_0;
+v0x9bfbfa0_0 .net "o", 15 0, L_0x9bfce80; 1 drivers
+v0x9bfc000_0 .net "z", 0 0, C4<z>; 0 drivers
+L_0x9bfcbb0 .concat [ 1 2 0 0], C4<z>, C4<00>;
+L_0x9bfccd8 .cmp/eq 3, L_0x9bfcbb0, C4<001>;
+L_0x9bfcd98 .concat [ 1 15 0 0], C4<z>, C4<000000000000000>;
+L_0x9bfce80 .functor MUXZ 16, L_0x9bfcd98, L_0x9bfc540, L_0x9bfccd8, C4<>;
+    .scope S_0x9bdb8f8;
 T_0 ;
-    %wait E_0x96183e8;
-    %load/v 8, v0x9638ff0_0, 1;
-    %inv 8, 1;
+    %wait E_0x9bdbaa8;
+    %load/v 8, v0x9bfc7a8_0, 1;
     %jmp/0xz  T_0.0, 8;
+    %load/v 8, v0x9bfc698_0, 16;
     %ix/load 0, 16, 0;
-    %assign/v0 v0x9638f58_0, 0, 0;
-    %jmp T_0.1;
+    %assign/v0 v0x9bfc758_0, 0, 8;
 T_0.0 ;
-    %load/v 8, v0x9638f58_0, 16;
-    %mov 24, 0, 16;
-    %addi 8, 1, 32;
-    %ix/load 0, 16, 0;
-    %assign/v0 v0x9638f58_0, 0, 8;
-T_0.1 ;
-    %load/v 8, v0x9638e68_0, 1;
-    %jmp/0xz  T_0.2, 8;
-    %load/v 8, v0x9638b98_0, 16;
-    %ix/load 0, 16, 0;
-    %assign/v0 v0x9638da0_0, 0, 8;
-T_0.2 ;
-    %load/v 8, v0x9638ef8_0, 1;
-    %jmp/0xz  T_0.4, 8;
-    %load/v 8, v0x9638b98_0, 16;
-    %ix/load 0, 16, 0;
-    %assign/v0 v0x9638e18_0, 0, 8;
-T_0.4 ;
     %jmp T_0;
     .thread T_0;
 # The file index is used to find the file name in the following table.
 :file_names 4;
     "N/A";
     "<interactive>";
-    "datapath.v";
-    "alu.v";
+    "register.v";
+    "tri_state_buffer.v";
